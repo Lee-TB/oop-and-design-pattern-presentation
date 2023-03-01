@@ -20,26 +20,12 @@ class VietinBank implements Bank {
     }
 }
 
-// cach 1
-abstract class BankCreator {
-    abstract createBank(): Bank;
+abstract class IBankFactory {
+    abstract createBank(bankType: BankType): Bank;
 }
 
-class TPBankCreator extends BankCreator {
-    createBank(): Bank {
-        return new TPBank();
-    }
-}
-
-class VietcomBankCreator extends BankCreator {
-    createBank(): Bank {
-        return new VietcomBank();
-    }
-}
-
-// cach 2
-class BankFactory {
-    public static createBank(bankType: BankType) {
+class BankFactory extends IBankFactory {
+    public createBank(bankType: BankType) {
         switch (bankType) {
             case BankType.TPBANK:
                 return new TPBank();
@@ -59,6 +45,23 @@ enum BankType {
     VIETINBANK,
 }
 
-const bankCreator: BankCreator = new TPBankCreator();
-const bank = bankCreator.createBank();
-console.log(bank.getBankName());
+const bankCreator: IBankFactory = new BankFactory();
+const vietinbank: Bank = bankCreator.createBank(BankType.VIETINBANK);
+console.log(vietinbank.getBankName()); // VietinBank
+
+// cach 1
+abstract class BankCreator {
+    abstract createBank(): Bank;
+}
+
+class TPBankCreator extends BankCreator {
+    createBank(): Bank {
+        return new TPBank();
+    }
+}
+
+class VietcomBankCreator extends BankCreator {
+    createBank(): Bank {
+        return new VietcomBank();
+    }
+}

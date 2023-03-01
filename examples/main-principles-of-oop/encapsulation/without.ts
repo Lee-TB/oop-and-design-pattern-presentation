@@ -1,18 +1,23 @@
 class Dog2 {
-  constructor(public hungry: number = 0, public weight: number = 0) {}
+    constructor(
+        public hungry: number = 0,
+        public weight: number = 0
+    ) {}
 
-  // In the real world, hunger can be reduced by eating
-  public eat(): void {
-    this.hungry--; // reduce hunger
-  }
-
-  public setWeight(weight: number): void {
-    // Check the value before assigning it
-    if (weight < 0) {
-      throw new Error('Weight cannot negative');
+    // In the real world, hunger can be reduced by eating
+    public eat(): void {
+        this.hungry--; // reduce hunger
     }
-    this.weight = weight;
-  }
+
+    public setWeight(weight: number): void {
+        // Check the value before assigning it
+        if (weight < 0) {
+            throw new Error(
+                'Weight cannot negative'
+            );
+        }
+        this.weight = weight;
+    }
 }
 
 const dog2 = new Dog2(); // Dog2 { hungry: 0, weight: 0 }
