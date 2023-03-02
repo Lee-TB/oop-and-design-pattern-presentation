@@ -1,7 +1,8 @@
-class Dog1 {
+class Dog {
     constructor(
-        private hungry: number = 0,
-        private weight: number = 0
+        private name: string,
+        private weight: number = 0,
+        private hungry: number = 0
     ) {}
 
     // In the real world, hunger can be reduced by eating
@@ -20,7 +21,7 @@ class Dog1 {
     }
 }
 
-const dog1 = new Dog1(); // Dog1 { hungry: 0, weight: 0 }
-dog1.eat();
-console.log(dog1); // Now Dog1 { hungry: -1, weight: 0 }
-dog1.setWeight(-10); // throw an error
+const dog = new Dog('poodle'); // Dog { name: 'poodle', weight: 0, hungry: 0 }
+dog.setWeight(19);
+dog.eat();
+console.log(dog); // Dog { name: 'poodle', weight: 19, hungry: -1 }
